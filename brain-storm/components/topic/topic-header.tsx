@@ -1,7 +1,7 @@
 import { Hash, Menu } from "lucide-react";
 
 //import { UserAvatar } from "@/components/user-avatar";
-//import { SocketIndicator } from "@/components/socket-indicator";<SocketIndicator />
+import { SocketIndicator } from "@/components/socket-indicator";
 
 interface TopicHeaderProps {
   groupId: string;
@@ -21,7 +21,7 @@ export const TopicHeader = ({
         {name}
       </p>
       <div className="ml-auto flex items-center">
-      SocketIndicator
+      <SocketIndicator />
       </div>
       
     </div>
