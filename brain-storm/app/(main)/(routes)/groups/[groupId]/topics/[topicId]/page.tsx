@@ -3,11 +3,10 @@ import { redirect } from "next/navigation";
 
 import { currentProfile } from "@/lib/current-profile";
 import { TopicHeader } from "@/components/topic/topic-header";
-//import { ChatInput } from "@/components/chat/chat-input";
 //import { ChatMessages } from "@/components/chat/chat-messages";
 //import { MediaRoom } from "@/components/media-room";//maybe..................................................................................
 import { db } from "@/lib/db";
-import { Menu } from "lucide-react";
+import { TopicInput } from "@/components/topic/topic-input";
 
 interface TopicPageProps {
   params: {
@@ -47,6 +46,15 @@ const TopicPage = async ({
       <TopicHeader
           groupId={params.groupId}
           name={topic.name}
+      />
+      <div className="flex-1">Future Message</div>
+      <TopicInput 
+        name={topic.name}
+        apiUrl="/api/socket/messages"
+        query={{
+          topicId: topic.id,
+          groupId: topic.groupId
+        }}
       />
     </div>
    );
