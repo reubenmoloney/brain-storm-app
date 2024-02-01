@@ -54,6 +54,9 @@ model Member {
   groupId String
   group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
 
+  messages Message[]
+  subMessages SubMessage[]
+
   @@index([profileId])
   @@index([groupId])
 }
@@ -69,7 +72,47 @@ model Topic {
   groupId String
   group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
 
+  messages Message[]
+
   @@index([profileId])
   @@index([groupId])
 }
 
+model Message {
+  id String @id @default(uuid())
+  content String @db.Text
+
+  fileUrl String? @db.Text
+
+  memberId String
+  member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  topicId String
+  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  isMedia Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  subMessages SubMessage[]
+
+  @@index([memberId])
+  @@index([topicId])
+}
+
+//will have to add sub message table aswell, relation will be 1 message has many sub messages - they all have to be message not media
+model SubMessage {
+  id String @id @default(uuid())
+  content String @db.Text
+
+  memberId String
+  member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  messageId String
+  message Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([memberId])
+  @@index([messageId])
+}
