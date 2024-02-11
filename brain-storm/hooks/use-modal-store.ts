@@ -1,11 +1,13 @@
 import { Topic, Group } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "createGroup" | "createTopic" | "leaveGroup" | "deleteGroup" | "deleteTopic" | "editGroup" | "invite" | "members";
+export type ModalType = "createGroup" | "createTopic" | "leaveGroup" | "deleteGroup" | "deleteTopic" | "editGroup" | "invite" | "members" | "messageFile";
 
 interface ModalData {
     group?: Group;
     topic? : Topic;
+    apiUrl?: string;
+    query?: Record<string, any>;
 }
 
 interface ModalStore {
