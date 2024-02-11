@@ -10,6 +10,8 @@ import {
     FormField,
     FormItem
 } from "@/components/ui/form";
+import axios from "axios";
+import qs from "query-string";
 
 import { Input } from "../ui/input";
 import { Plus } from "lucide-react";
@@ -38,8 +40,17 @@ export const TopicInput = ({
 
     const isLoading = form.formState.isSubmitting;
 
-    const onSubmit = async (value: z.infer<typeof formSchema>) => {
-        console.log(value);
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        try{
+            const url = qs.stringifyUrl({
+                url: apiUrl,
+                query,
+            });
+
+            await axios.post(url, values);
+        }catch(error){
+            console.log(error);
+        }
     }
 
     return (
@@ -59,6 +70,12 @@ export const TopicInput = ({
                                     >
                                         <Plus className="text-white"/>
                                     </button>
+                                    <Input 
+                                        disabled={isLoading}
+                                        className="px-14 py-6 bg-zinc-200 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600"
+                                        placeholder="Enter message here"
+                                        {...field}
+                                    />
                                 </div>
                             </FormControl>
                         </FormItem>

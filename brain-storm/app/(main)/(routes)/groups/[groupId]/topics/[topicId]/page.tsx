@@ -47,7 +47,7 @@ const TopicPage = async ({
           groupId={params.groupId}
           name={topic.name}
       />
-      <div className="flex-1">Future Message</div>
+      <div className=" h-[720px]">Future Message</div>
       <TopicInput 
         name={topic.name}
         apiUrl="/api/socket/messages"
