@@ -26,6 +26,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
 import { useRouter } from "next/navigation";
+import { useModal } from "@/hooks/use-modal-store";
 
 const formSchema = z.object({
     name: z.string().min(1, {
@@ -36,14 +37,11 @@ const formSchema = z.object({
     })
 });
 
-export const InitialModal = () => {
-    const [isMounted, setIsMounted] = useState(false);
-
+export const MessageFileModal = () => {
+    const { isOpen, onClose, type, data } = useModal();
     const router = useRouter();
 
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
+    const isModalOpen = isOpen && type === "messageFile";
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -52,6 +50,11 @@ export const InitialModal = () => {
             imageUrl: "",
         }
     });
+
+    const handleClose = () => {
+        form.reset();
+        onClose();
+    }
 
     const isLoading = form.formState.isSubmitting;
 
@@ -67,12 +70,8 @@ export const InitialModal = () => {
         }
     }
 
-    if (!isMounted) {
-        return null;
-    }
-
     return (
-        <Dialog open={true}>
+        <Dialog open={isModalOpen} onOpenChange={handleClose}>
             <DialogContent className="bg-white text-black p-0 overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl text-center font-bold">
@@ -94,7 +93,7 @@ export const InitialModal = () => {
                                         <FormItem>
                                             <FormControl>
                                                 <FileUpload
-                                                    endpoint="serverImage"
+                                                    endpoint="messageFile"
                                                     value={field.value}
                                                     onChange={field.onChange}
                                                 />
@@ -126,7 +125,7 @@ export const InitialModal = () => {
                             />
                         </div>
                         <DialogFooter className="bg-gray-100 px-6 py-4">
-                            <Button disabled={isLoading} variant={"primary"}>
+                            <Button disabled={isLoading} variant={"default"}>
                                 Create
                             </Button>            
                         </DialogFooter>

@@ -15,6 +15,7 @@ import qs from "query-string";
 
 import { Input } from "../ui/input";
 import { Plus } from "lucide-react";
+import { useModal } from "@/hooks/use-modal-store";
 
 interface TopicInputProps {
     apiUrl: string;
@@ -31,6 +32,7 @@ export const TopicInput = ({
     query,
     name
 }: TopicInputProps) => {
+    const { onOpen } = useModal();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -65,7 +67,7 @@ export const TopicInput = ({
                                 <div className="relative p-4 pb-6">
                                     <button
                                         type="button"
-                                        onClick={() => {}}
+                                        onClick={() => onOpen("messageFile", { apiUrl, query})}
                                         className="absolute top-7 left-8 h-[24px] w-[24px] bg-zinc-500 hover:bg-zinc-600 transition rounded-full p-1 flex items-center justify-center"
                                     >
                                         <Plus className="text-white"/>
