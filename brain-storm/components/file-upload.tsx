@@ -39,6 +39,14 @@ export const FileUpload = ({
             </div>
         )
     }
+
+    if (value && fileType === "pdf") {
+        return (
+            <div>
+                PDF ready to be sent
+            </div>
+        )
+    }
     return (
         <UploadDropzone 
             endpoint={endpoint}

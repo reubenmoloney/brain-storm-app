@@ -7,6 +7,9 @@ import { TopicHeader } from "@/components/topic/topic-header";
 //import { MediaRoom } from "@/components/media-room";//maybe..................................................................................
 import { db } from "@/lib/db";
 import { TopicInput } from "@/components/topic/topic-input";
+import { TopicMessages } from "@/components/topic/topic-messages";
+
+//<div className=" h-[720px]">Message Here</div>
 
 interface TopicPageProps {
   params: {
@@ -47,7 +50,20 @@ const TopicPage = async ({
           groupId={params.groupId}
           name={topic.name}
       />
-      <div className=" h-[720px]">Future Message</div>
+      <TopicMessages
+        member={member}
+        name = {topic.name}
+        type="topic"
+        topicId = {topic.id}
+        apiUrl = "/api/messages"
+        socketUrl="/api/socket/messages"
+        socketQuery={{
+          topicId: topic.id,
+          groupId: topic.groupId,
+        }}
+        paramKey="topicId"
+        paramValue={topic.id}
+      />
       <TopicInput 
         name={topic.name}
         apiUrl="/api/socket/messages"
