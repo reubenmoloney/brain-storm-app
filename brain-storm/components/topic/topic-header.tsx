@@ -6,7 +6,11 @@ interface TopicHeaderProps {
   name: string;
   imageUrl?: string;
 }
-
+/*
+<div className="ml-auto flex items-center">
+      <SocketIndicator />
+      </div>
+*/
 export const TopicHeader = ({
   groupId,
   name,
@@ -18,9 +22,6 @@ export const TopicHeader = ({
       <p className="font-semibold text-md text-black ">
         {name}
       </p>
-      <div className="ml-auto flex items-center">
-      <SocketIndicator />
-      </div>
     </div>
   )
 }

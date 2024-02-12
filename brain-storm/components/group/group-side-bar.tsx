@@ -98,7 +98,8 @@ export const GroupSidebar = async ({
                 )}                
                 {!!members?.length && (
                     <div className="mb-2">
-                        <GroupSection sectionType="members" role={role} label="Members" />
+                        <p className="text-xl text-rose-500">Members</p>
+                        {profile.name}
                         <div className="space-y-[2px]">
                             {members.map((member) => (
                                 <div>{member.profile.name}</div>

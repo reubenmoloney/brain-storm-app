@@ -36,10 +36,10 @@ export const GroupHeader = ({
                 >
                     { isModerator && (
                         <DropdownMenuItem
-                            onClick={() => onOpen("invite", { group: group })}
+                            onClick={() => onOpen("addMember", { group: group })}
                             className="px-3 py-2 text-sm cursor-pointer"
                         >
-                            Invite People
+                            Add People
                             <UserPlus className="h-4 w-4 ml-auto"/>
                         </DropdownMenuItem>
                     )}
