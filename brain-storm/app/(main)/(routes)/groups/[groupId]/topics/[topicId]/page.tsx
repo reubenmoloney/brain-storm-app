@@ -72,6 +72,7 @@ const TopicPage = async ({
           groupId: topic.groupId
         }}
       />
+      
     </div>
    );
 }

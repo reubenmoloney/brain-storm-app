@@ -6,7 +6,7 @@ import { Book, HelpCircle, Search } from "lucide-react";
 export const NavigationTopbar = () => {
     
     return (
-        <div className="flex flex-direction:row justify-center py-3 space-x-10 bg-rose-200 fixed w-full">
+        <div className="flex flex-direction:row justify-center py-3 space-x-10 bg-rose-200 fixed w-full z-100">
             <p>BrainStorm</p>
             <a href="/groups" className="flex flex-direction:row hover:bg-rose-100 transition rounded-md"><Book/>My Groups</a>
             <a href="/help" className="flex flex-direction:row hover:bg-rose-100 rounded-md transition"><HelpCircle />Help</a>

@@ -57,7 +57,7 @@ export const TopicInput = ({
     }
 
     return (
-        <Form {...form}>
+            <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
                     control={form.control}
@@ -88,5 +88,6 @@ export const TopicInput = ({
                 />
             </form>
         </Form>
+
     )
 }

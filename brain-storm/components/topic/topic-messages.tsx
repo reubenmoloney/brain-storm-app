@@ -3,10 +3,10 @@
 import { useTopicMessageQuery } from "@/hooks/use-topic-message-query";
 import { Member, Message, Profile } from "@prisma/client";
 import { Loader2, ServerCrashIcon } from "lucide-react";
-import { Fragment } from "react";
+import { Fragment, useRef, ElementRef } from "react";
 import { MessageItem } from "./message-item";
 import { format } from "date-fns";
-import { useChatSocket } from "@/hooks/use-topic-message-socket";
+import { useTopicMessageSocket } from "@/hooks/use-topic-message-socket";
 
 const DATE_FORMAT = "d MMM yyyy, HH:mm";
 
@@ -43,6 +43,9 @@ export const TopicMessages = ({
     const addKey = `chat:${topicId}:messages`;
     const updateKey = `chat:${topicId}:messages:update`;
 
+    const chatRef = useRef<ElementRef<"div">>(null);
+    const bottomRef = useRef<ElementRef<"div">>(null);
+
     const {
         data,
         fetchNextPage,
@@ -55,8 +58,8 @@ export const TopicMessages = ({
         paramKey,
         paramValue
     });
-    useChatSocket({queryKey, addKey, updateKey});
-
+    useTopicMessageSocket({queryKey, addKey, updateKey});
+    
     if (status === "pending") {
         return (
             <div className="flex flex-col flex-1 justify-center items-center">
@@ -78,13 +81,9 @@ export const TopicMessages = ({
             </div>
         )
     }
-
+    //const chatRef = useRef<ElementRef<"div">>(null);
     return (
-        <div className="flex-1 flex flex-col py-4 overflow-y-auto">
-            <div className="flex-1"/>
-            <div className="text-xl md:text-3xl font-bold">
-                This is the start of {name}.
-            </div>
+        <div ref={chatRef} className="flex-1 flex flex-col z-0 py-4 overflow-y-auto">
             <div className="flex flex-col-reverse mt-auto">
                 {data?.pages?.map((group, i) => (
                     <Fragment key={i}>
@@ -105,6 +104,7 @@ export const TopicMessages = ({
                     </Fragment>
                 ))}
             </div>
+            <div ref={bottomRef}/>
         </div>
     )
 }

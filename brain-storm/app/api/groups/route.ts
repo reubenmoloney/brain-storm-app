@@ -6,18 +6,25 @@ import { MemberRole } from "@prisma/client";
 
 export async function POST(req: Request) {
     try{
-        const { name, imageUrl } = await req.json();
+        const { name, isPublicString } = await req.json();
         const profile = await currentProfile();
 
         if(!profile) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
 
+        let isPublic = false;
+        if(isPublicString === true){
+            isPublic = true;
+        }
+        console.log(isPublicString, " :::: ", isPublic);
+
         const group = await db.group.create({
             data: {
                 profileId: profile.id,
                 name: name,
-                imageUrl: "imageUrl",
+                isPublic,
+                imageUrl: "",
                 topics: {
                     create: [
                         { name: "general", profileId: profile.id }
