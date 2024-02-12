@@ -6,6 +6,7 @@ import { Loader2, ServerCrashIcon } from "lucide-react";
 import { Fragment } from "react";
 import { MessageItem } from "./message-item";
 import { format } from "date-fns";
+import { useChatSocket } from "@/hooks/use-topic-message-socket";
 
 const DATE_FORMAT = "d MMM yyyy, HH:mm";
 
@@ -38,7 +39,9 @@ export const TopicMessages = ({
     paramValue,
     type,
 }: TopicMessagesProps) => {
-    const queryKey = `chat:${topicId}`;
+    const queryKey = `chat:${topicId}`
+    const addKey = `chat:${topicId}:messages`;
+    const updateKey = `chat:${topicId}:messages:update`;
 
     const {
         data,
@@ -52,6 +55,7 @@ export const TopicMessages = ({
         paramKey,
         paramValue
     });
+    useChatSocket({queryKey, addKey, updateKey});
 
     if (status === "pending") {
         return (
