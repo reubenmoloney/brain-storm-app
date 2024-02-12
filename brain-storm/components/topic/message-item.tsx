@@ -56,14 +56,6 @@ export const MessageItem = ({
     const params = useParams();
     const router = useRouter();
 
-    const onMemberClick = () => {
-        if (member.id === currentMember.id) {
-        return;
-        }
-    
-        router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
-    }
-
     useEffect(() => {
         const handleKeyDown = (event: any) => {
         if (event.key === "Escape" || event.keyCode === 27) {
