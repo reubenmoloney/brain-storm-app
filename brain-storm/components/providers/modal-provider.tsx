@@ -6,6 +6,7 @@ import { CreateTopicModal } from "../modals/create-topic-modal";
 import { DeleteTopicModal } from "../modals/delete-topic-modal";
 import { DeleteGroupModal } from "../modals/delete-group-modal";
 import { MessageFileModal } from "../modals/message-file-modal";
+import { DeleteMessageModal } from "../modals/delete-message-modal";
 
 export const ModalProvider = () => {
     const [isMounted, setIsMounted] = useState(false);
@@ -25,6 +26,7 @@ export const ModalProvider = () => {
             <DeleteTopicModal />
             <DeleteGroupModal />
             <MessageFileModal />
+            <DeleteMessageModal />
         </>
     )
 }
