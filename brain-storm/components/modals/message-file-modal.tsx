@@ -27,7 +27,7 @@ import { useModal } from "@/hooks/use-modal-store";
 
 const formSchema = z.object({
     fileUrl: z.string().min(1, {
-        message: "image is required"
+        message: "file is required"
     })
 });
 
@@ -61,6 +61,7 @@ export const MessageFileModal = () => {
             await axios.post(url, {
                 ...values,
                 content: values.fileUrl,
+                isMedia: true,
             });
 
             form.reset();
@@ -79,7 +80,7 @@ export const MessageFileModal = () => {
                         Add file attachment
                     </DialogTitle>
                     <DialogDescription className="text-center text-zinc-500">
-                        Send a file with your message
+                        Send a file to this topic
                     </DialogDescription>
                 </DialogHeader>
                 <Form {...form}>

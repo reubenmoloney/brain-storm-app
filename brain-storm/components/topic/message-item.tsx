@@ -3,7 +3,7 @@
 import { Member, MemberRole, Profile } from "@prisma/client";
 import { ActionTooltip } from "../action-tooltip";
 import Image from "next/image";
-import { FileIcon } from "lucide-react";
+import { Edit, FileIcon } from "lucide-react";
 
 interface MessageItemProps {
     id: string;
@@ -38,7 +38,7 @@ export const MessageItem = ({
     const isOwner = currentMember.id === member.id;
     const canDelete = currentMember.role !== MemberRole.MEMBER || isOwner;
     const canEdit = isOwner && !isMedia;
-    const isPDF = fileType === "pdf" && fileUrl;
+    const isPDF = fileType === "pdf" && isMedia;
     const isImage = isMedia && !isPDF;
 
     return (
@@ -56,7 +56,7 @@ export const MessageItem = ({
                     {isImage && (
                         <div className="bg-secondary relative aspect-square mt-2 overflow-hidden border flex items-center h-48 w-48" >
                             <Image 
-                                src={fileUrl}
+                                src={content}
                                 alt={content}
                                 fill
                                 className="object-cover"
@@ -76,8 +76,24 @@ export const MessageItem = ({
                                 </a>
                         </div>
                     )}
+                    {!isMedia && (
+                        <>
+                            {content}
+                        </>
+                    )}
                 </div>
             </div>
+            {canDelete && (
+                <div className="hidden group-hover:flex items-center gap-x-2 absolute p-1 -top-2 right-5 bg-white rounded-sm">
+                    {canEdit && (
+                        <ActionTooltip label="Edit">
+                            <Edit 
+                                className="hover:text-yellow"
+                            />
+                        </ActionTooltip>
+                    )}
+                </div>
+            )}
         </div>
     )
 }
