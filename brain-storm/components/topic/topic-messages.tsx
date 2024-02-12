@@ -1,9 +1,19 @@
 "use client";
 
 import { useTopicMessageQuery } from "@/hooks/use-topic-message-query";
-import { Member } from "@prisma/client";
+import { Member, Message, Profile } from "@prisma/client";
 import { Loader2, ServerCrashIcon } from "lucide-react";
+import { Fragment } from "react";
+import { MessageItem } from "./message-item";
+import { format } from "date-fns";
 
+const DATE_FORMAT = "d MMM yyyy, HH:mm";
+
+type MessageWithMemberWithProfile = Message & {
+    member: Member & {
+        profile: Profile
+    }
+}
 //could reuse this to implement dms
 interface TopicMessagesProps {
     name: string;
@@ -48,7 +58,7 @@ export const TopicMessages = ({
             <div className="flex flex-col flex-1 justify-center items-center">
                 <Loader2 className="h-8 w-7 text-zinc-600 animate-spin my-4"/>
                 <p className="text-xs text-zinc-600">
-                    Loading Older Messages
+                    Loading Messages
                 </p>
             </div>
         )
@@ -70,6 +80,26 @@ export const TopicMessages = ({
             <div className="flex-1"/>
             <div className="text-xl md:text-3xl font-bold">
                 This is the start of {name}.
+            </div>
+            <div className="flex flex-col-reverse mt-auto">
+                {data?.pages?.map((group, i) => (
+                    <Fragment key={i}>
+                        {group.items.map((message: MessageWithMemberWithProfile) => (
+                            <MessageItem
+                                id={message.id}
+                                content={message.content}
+                                fileUrl={message.fileUrl}
+                                isMedia={message.isMedia}
+                                member={message.member}
+                                timestamp={format(new Date(message.createdAt), DATE_FORMAT)}
+                                socketUrl={socketUrl}
+                                socketQuery={socketQuery}
+                                currentMember={member}
+                                key={message.id}
+                            />
+                        ))}
+                    </Fragment>
+                ))}
             </div>
         </div>
     )

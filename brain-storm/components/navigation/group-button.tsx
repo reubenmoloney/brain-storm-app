@@ -23,7 +23,7 @@ export const GroupButton =({
         router.push(`/groups/${id}`);
     }
 
-    const groupLabel = `Open ${name}`;
+    const groupLabel = `Click to open ${name}`;
     return(
         <ActionTooltip side="right" align="center" label={groupLabel}>
             <button
@@ -31,12 +31,12 @@ export const GroupButton =({
                 className="group relative flex items-center"
             >
                 <div className={cn(
-                    "absolute left-0 bg-primary rounded-r-full transition-all w-[4px]",
+                    "absolute left-0 bg-primary rounded-sm transition-all w-[4px]",
                     params?.groupId !== id && "group-hover:h-[20px]",
                     params?.groupId === id ? "h-[36px]" : "h-[8px]"
                 )} />
                 <div className={cn(
-                    "relative group flex mx-3 h-[48px] w-[130px] rounded-[24px] group-hover:rounded=[16px] transition-all overflow-hidden",
+                    "relative group flex mx-3 h-[48px] w-[130px] rounded-[16px] group-hover:rounded=[16px] transition-all overflow-hidden",
                     params?.groupId === id && "bg-primary/10 text-primary rounded-[16px]"
                 )}>
                 <div className="flex items-center justify-center">

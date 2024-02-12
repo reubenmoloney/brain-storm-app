@@ -22,16 +22,14 @@ export const GroupSection = ({
     const { onOpen } = useModal();
 
     return(
-        <div className="flex items-center justify-between py-2">
+        <div className="flex items-center justify-between py-2 bg-white rounded-sm my-2 border-[2px] hover:text-white border-rose-500 hover:bg-rose-100 pl-2">
             {role !== MemberRole.MEMBER && sectionType === "topics" &&(
-                <ActionTooltip label="Create Topic" side="top">
                     <button 
-                        className="flex flex-direction:row items-center text-zinc-500 hover:text-zinc-600 transition"
+                        className="flex flex-direction:row items-center text-zinc-500 hover:text-whit transition"
                         onClick={() => onOpen("createTopic")}
                     >
                         {label}  <Plus className="h-4 w-4"/>
                     </button>
-                </ActionTooltip>
             )}
             {role === MemberRole.OWNER && sectionType === "members" && (
                 <ActionTooltip label="Manage Members" side="top">

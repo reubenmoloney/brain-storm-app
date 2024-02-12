@@ -75,10 +75,6 @@ export const GroupSidebar = async ({
                 role = {role}
             />
             <ScrollArea className="flex-1 px-3">
-                <div className="mt-2">
-                    Search Maybe
-                </div>
-                <Separator className="bg-zinc-200 rounded-md my-2"/>
                 {!!topics?.length && (
                     <div className="mb-2">
                         <GroupSection

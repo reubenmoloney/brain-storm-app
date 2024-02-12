@@ -16,6 +16,7 @@ import qs from "query-string";
 import { Input } from "../ui/input";
 import { Plus } from "lucide-react";
 import { useModal } from "@/hooks/use-modal-store";
+import { ActionTooltip } from "../action-tooltip";
 
 interface TopicInputProps {
     apiUrl: string;
@@ -65,6 +66,7 @@ export const TopicInput = ({
                         <FormItem>
                             <FormControl>
                                 <div className="relative p-4 pb-6">
+                                <ActionTooltip side="top" align="center" label="Attach Media">
                                     <button
                                         type="button"
                                         onClick={() => onOpen("messageFile", { apiUrl, query})}
@@ -72,6 +74,7 @@ export const TopicInput = ({
                                     >
                                         <Plus className="text-white"/>
                                     </button>
+                                </ActionTooltip>
                                     <Input 
                                         disabled={isLoading}
                                         className="px-14 py-6 bg-zinc-200 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600"
