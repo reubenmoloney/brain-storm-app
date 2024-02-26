@@ -84,14 +84,12 @@ export const GroupSidebar = async ({
                         />
                         <div className="space-y-[2px]">
                             {topics.map((topic) => (
-                                <div>
                                     <TopicButton
                                         topic = {topic}
                                         group = {group}
                                         role = {role}
-                                    
+                                        key={topic.id}
                                     />
-                                </div>
                             ))}
                         </div>
                     </div>
@@ -102,7 +100,7 @@ export const GroupSidebar = async ({
                         {profile.name}
                         <div className="space-y-[2px]">
                             {members.map((member) => (
-                                <div>{member.profile.name}</div>
+                                <div key={member.id}>{member.profile.name}</div>
                             ))}
                         </div>
                     </div>
