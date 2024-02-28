@@ -18,6 +18,7 @@ const browsePage = async () => {
     })
     const onClick = async (groupId: string) =>{
         //need to check if user is in group before adding them -----------------
+        /*
         const alreadyInGroup = await db.group.findFirst({
             where: {
                 id: groupId,
@@ -33,7 +34,7 @@ const browsePage = async () => {
             return null;
         }
 
-
+        */
         const updatedGroup = await db.group.update({
             where: {
                 id: groupId,
