@@ -10,6 +10,7 @@ import { DeleteMessageModal } from "../modals/delete-message-modal";
 import { EditGroupModal } from "../modals/edit-group-modal";
 import { AddMemberModal } from "../modals/add-member-modal";
 import { JoinGroupModal } from "../modals/join-group-modal";
+import { LeaveGroupModal } from "../modals/leave-group-modal";
 
 export const ModalProvider = () => {
     const [isMounted, setIsMounted] = useState(false);
@@ -33,6 +34,7 @@ export const ModalProvider = () => {
             <EditGroupModal />
             <AddMemberModal />
             <JoinGroupModal />
+            <LeaveGroupModal />
         </>
     )
 }
