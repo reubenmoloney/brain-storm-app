@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { MemberRole } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { ScrollArea } from "../ui/scroll-area";
-import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
+import { Hash, Mic, ShieldAlert, ShieldCheck } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { GroupSection } from "./group-section";
 import { TopicButton } from "./topic-button";

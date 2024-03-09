@@ -58,7 +58,6 @@ export const AddMemberModal = () => {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try{
-            console.log(values, ";;;;", name);
             const url = qs.stringifyUrl({
                 url: "/api/members",
                 query: {

@@ -20,44 +20,6 @@ const browsePage = async () => {
         }
     })
 
-    /*
-    const onClick = async (groupId: string) =>{
-        //need to check if user is in group before adding them -----------------
-        /*
-        const alreadyInGroup = await db.group.findFirst({
-            where: {
-                id: groupId,
-                members:{
-                    some: {
-                        profileId: profile.id
-                    }
-                }
-            }
-        })
-
-        if(alreadyInGroup){
-            return null;
-        }
-
-        
-        const updatedGroup = await db.group.update({
-            where: {
-                id: groupId,
-            },
-            data: {
-                members:{
-                    create:[
-                        {
-                            profileId: profile.id
-                        }
-                    ]
-                }
-            }
-        })
-        
-        //send to that group
-        return redirect(`/groups/${updatedGroup.id}`);
-    }*/
     return ( 
         <>
         <div>
