@@ -67,6 +67,7 @@ const browsePage = async () => {
                 <div key={group.id} className="flex flex-inline m-2 p-2 bg-zinc-400 rounded-md">{group.name}
                     <JoinButton
                         group={group}
+                        profile={profile}
                     />
                 </div>
             ))}

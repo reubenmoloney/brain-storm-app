@@ -5,51 +5,34 @@ import { NextResponse } from "next/server";
 
 export async function POST(
     req: Request,
-    groupId: string
 ) {
     try {
-        const profile = await currentProfile();
-        const { name } = await req.json();
+        const { group, profile } = await req.json();
         const { searchParams} = new URL(req.url);
 
-        //const groupId = searchParams.get("groupId");
-        const email = searchParams.get("name");
-        if(!email){
-            return new NextResponse("Email Missing", { status: 400 });
-        }
-
+        console.log(group, profile);
         if(!profile){
             return new NextResponse("Unauthorized", { status: 401 });
         }
 
-        if(!groupId){
+        if(!group){
             return new NextResponse("Group ID Missing", { status: 400 });
         }
-        const newMember = await db.profile.findFirst({
-            where: {
-                email: email
-            }
-        })
-        if(!newMember){
-            return new NextResponse("User Missing", { status: 400 });
-        }
 
-        const group = await db.group.update({
+        const newGroup = await db.group.update({
             where: {
-                id: groupId,
+                id: group.id,
             },
             data: {
                 members: {
                     create: {
                         profileId: profile.id,
-                        
-
                     }
                 }
             }
         });
 
-        return NextResponse.json(group);
+        return NextResponse.json(newGroup);
 
         
     } catch(error) {

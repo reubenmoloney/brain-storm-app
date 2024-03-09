@@ -8,7 +8,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog"
-
+import qs from "query-string";
 import { useModal } from "@/hooks/use-modal-store";
 import { Button } from "../ui/button";
 import { useState } from "react";
@@ -20,24 +20,27 @@ export const JoinGroupModal = () => {
     const router = useRouter();
 
     const isModalOpen = isOpen && type === "joinGroup";
-    const { group } = data;
+    const { group, profile } = data;//this aint working
 
-    const [isLoading, setIsLoading] = useState(false);
+    if(!group){
+        return(console.log("no group in join group modal"))
+    }
+    if(!profile){
+        return(console.log("no profile in join group modal"))
+    }
 
-    const onClick = async () => {
-        try {
-            setIsLoading(true);
+    const values = {
+        profile,
+        group
+    }
 
-            await axios.delete(`/api/groups/${group?.id}`);
-
-            onClose();
-
+    const onSubmit = async () => {
+        try{
+            await axios.post("/api/members", values);
             router.refresh();
-            router.push("/");
-        } catch (error) {
+            onClose();
+        } catch(error) {
             console.log(error);
-        } finally {
-            setIsLoading(false);
         }
     }
 
@@ -52,16 +55,14 @@ export const JoinGroupModal = () => {
                 <DialogFooter className="bg-gray-100 px-6 py-4">
                     <div className="flex items-center justify-between w-full">
                         <Button
-                            disabled={isLoading}
                             onClick={onClose}
                             variant="ghost"
                         >
                             Cancel
                         </Button>
                         <Button
-                            disabled={isLoading}
                             variant="default"
-                            onClick={onClick}
+                            onClick={onSubmit}
                         >
                             Confirm
                         </Button>
