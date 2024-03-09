@@ -1,7 +1,7 @@
 import { Topic, Group } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "createGroup" | "createTopic" | "leaveGroup" | "deleteGroup" | "deleteTopic" | "editGroup" | "invite" | "members" | "messageFile" | "deleteMessage" | "addMember";
+export type ModalType = "createGroup" | "createTopic" | "leaveGroup" | "deleteGroup" | "deleteTopic" | "editGroup" | "invite" | "members" | "messageFile" | "deleteMessage" | "addMember" | "joinGroup";
 
 interface ModalData {
     group?: Group;

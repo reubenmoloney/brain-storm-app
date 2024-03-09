@@ -2,6 +2,9 @@ import { db } from "@/lib/db";
 import { currentProfile } from "@/lib/current-profile";
 import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import { useModal } from "@/hooks/use-modal-store";
+import { JoinButton } from "@/components/browse/join-button";
+
 
 
 const browsePage = async () => {
@@ -16,6 +19,8 @@ const browsePage = async () => {
             isPublic: true
         }
     })
+
+    /*
     const onClick = async (groupId: string) =>{
         //need to check if user is in group before adding them -----------------
         /*
@@ -34,7 +39,7 @@ const browsePage = async () => {
             return null;
         }
 
-        */
+        
         const updatedGroup = await db.group.update({
             where: {
                 id: groupId,
@@ -52,16 +57,22 @@ const browsePage = async () => {
         
         //send to that group
         return redirect(`/groups/${updatedGroup.id}`);
-    }
+    }*/
     return ( 
+        <>
         <div>
             <div className="text-xl m-5">All of these groups are public and you can join them now!</div>
             <div className="">
             {groups.map((group) => (
-                <div key={group.id} className="flex flex-inline m-2 p-2 bg-zinc-400 rounded-md">{group.name} <button onClick={() =>onClick(group.id)}className="bg-zinc-200 p-1 rounded-lg hover:bg-zinc-50 ml-auto">Join</button></div>
+                <div key={group.id} className="flex flex-inline m-2 p-2 bg-zinc-400 rounded-md">{group.name}
+                    <JoinButton
+                        group={group}
+                    />
+                </div>
             ))}
             </div>
         </div>
+        </>
      )
 }
  

@@ -36,12 +36,12 @@ export async function POST(
 
         const group = await db.group.update({
             where: {
-                id: "44fac64c-4840-4b6d-8aea-32212f629fa2",
+                id: groupId,
             },
             data: {
                 members: {
                     create: {
-                        profileId: "0e8bb84b-051c-4d2c-82c4-585826d54951",
+                        profileId: profile.id,
                         
 
                     }
