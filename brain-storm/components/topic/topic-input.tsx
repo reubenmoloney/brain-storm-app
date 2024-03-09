@@ -57,6 +57,7 @@ export const TopicInput = ({
     }
 
     return (
+        <div className="fixed w-full bottom-[0px]">
             <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
@@ -88,6 +89,7 @@ export const TopicInput = ({
                 />
             </form>
         </Form>
+        </div>
 
     )
 }

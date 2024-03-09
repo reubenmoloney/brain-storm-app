@@ -17,7 +17,7 @@ export const TopicHeader = ({
   imageUrl
 }: TopicHeaderProps) => {
   return (
-    <div className="text-md font-semibold px-3 flex items-center h-12 border-neutral-200 border-b-2">
+    <div className="text-md font-semibold px-3 flex items-center h-12 fixed border-neutral-200 border-b-2">
         <Menu />
       <p className="font-semibold text-md text-black ">
         {name}

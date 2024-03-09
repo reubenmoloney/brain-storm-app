@@ -7,6 +7,7 @@ import { Fragment, useRef, ElementRef } from "react";
 import { MessageItem } from "./message-item";
 import { format } from "date-fns";
 import { useTopicMessageSocket } from "@/hooks/use-topic-message-socket";
+import { ScrollArea } from "../ui/scroll-area";
 
 const DATE_FORMAT = "d MMM yyyy, HH:mm";
 
@@ -48,9 +49,6 @@ export const TopicMessages = ({
 
     const {
         data,
-        fetchNextPage,
-        hasNextPage,
-        isFetchingNextPage,
         status
     } = useTopicMessageQuery({
         queryKey,
@@ -83,28 +81,31 @@ export const TopicMessages = ({
     }
     //const chatRef = useRef<ElementRef<"div">>(null);
     return (
-        <div ref={chatRef} className="flex-1 flex flex-col z-0 py-4 overflow-y-auto">
-            <div className="flex flex-col-reverse mt-auto">
-                {data?.pages?.map((group, i) => (
-                    <Fragment key={i}>
-                        {group.items.map((message: MessageWithMemberWithProfile) => (
-                            <MessageItem
-                                id={message.id}
-                                content={message.content}
-                                fileUrl={message.fileUrl}
-                                isMedia={message.isMedia}
-                                member={message.member}
-                                timestamp={format(new Date(message.createdAt), DATE_FORMAT)}
-                                socketUrl={socketUrl}
-                                socketQuery={socketQuery}
-                                currentMember={member}
-                                key={message.id}
-                            />
-                        ))}
-                    </Fragment>
-                ))}
+        <ScrollArea className="flex-1 w-full fixed">
+                
+            <div ref={chatRef} className="flex-1 flex flex-col py-4 overflow-y-auto">
+                <div className="flex flex-col-reverse mt-auto">
+                    {data?.pages?.map((group, i) => (
+                        <Fragment key={i}>
+                            {group.items.map((message: MessageWithMemberWithProfile) => (
+                                <MessageItem
+                                    id={message.id}
+                                    content={message.content}
+                                    fileUrl={message.fileUrl}
+                                    isMedia={message.isMedia}
+                                    member={message.member}
+                                    timestamp={format(new Date(message.createdAt), DATE_FORMAT)}
+                                    socketUrl={socketUrl}
+                                    socketQuery={socketQuery}
+                                    currentMember={member}
+                                    key={message.id}
+                                />
+                            ))}
+                        </Fragment>
+                    ))}
+                </div>
+                <div className="h-[60px]"/>
             </div>
-            <div ref={bottomRef}/>
-        </div>
+        </ScrollArea>
     )
 }
