@@ -12,4 +12,4 @@ Add users
 Display roles next to names
 
 # ADD SOON
-add group descriptions
+remove members working

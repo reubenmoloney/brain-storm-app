@@ -26,7 +26,8 @@ const browsePage = async () => {
             <div className="text-xl m-5">All of these groups are public and you can join them now!</div>
             <div className="">
             {groups.map((group) => (
-                <div key={group.id} className="flex flex-inline m-2 p-2 bg-zinc-400 rounded-md">{group.name}
+                <div key={group.id} className="flex flex-inline m-2 p-2 bg-zinc-400 rounded-md">
+                    <span className="text-1 text-white">{group.name}</span>: {group.description}
                     <JoinButton
                         group={group}
                         profile={profile}

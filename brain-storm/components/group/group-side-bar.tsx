@@ -75,6 +75,7 @@ export const GroupSidebar = async ({
                 group = {group}
                 role = {role}
             />
+            
             <ScrollArea className="flex-1 px-3">
                 {!!topics?.length && (
                     <div className="mb-2">
@@ -85,6 +86,7 @@ export const GroupSidebar = async ({
                                 label="Create Topic"
                             />
                         }
+                        <p className="text-xl text-rose-500">Topics</p>
                         <div className="space-y-[2px]">
                             {topics.map((topic) => (
                                     <TopicButton
