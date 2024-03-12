@@ -9,6 +9,7 @@ import { GroupSection } from "./group-section";
 import { TopicButton } from "./topic-button";
 import { GroupHeader } from "./group-header";
 
+
 //props for passthrough from function call
 interface GroupSidebarProps {
     groupId: string;
@@ -56,8 +57,8 @@ export const GroupSidebar = async ({
 
     //fetch the topics
     const topics = group?.topics;
-    //fetch the members (except the current user)
-    const members = group?.members.filter((member) => member.profileId !== profile.id);
+    //fetch the members
+    const members = group?.members;
 
     //if theres no group redirect
     if(!group){
@@ -99,10 +100,9 @@ export const GroupSidebar = async ({
                 {!!members?.length && (
                     <div className="mb-2">
                         <p className="text-xl text-rose-500">Members</p>
-                        {profile.name}
                         <div className="space-y-[2px]">
                             {members.map((member) => (
-                                <div key={member.id}>{member.profile.name}</div>
+                                <div key={member.id} className="flex">{member.profile.name}{roleIconMap[member.role]}</div>
                             ))}
                         </div>
                     </div>
