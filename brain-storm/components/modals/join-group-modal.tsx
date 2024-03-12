@@ -3,15 +3,12 @@
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog"
-import qs from "query-string";
 import { useModal } from "@/hooks/use-modal-store";
 import { Button } from "../ui/button";
-import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -20,14 +17,7 @@ export const JoinGroupModal = () => {
     const router = useRouter();
 
     const isModalOpen = isOpen && type === "joinGroup";
-    const { group, profile } = data;//this aint working
-
-    if(!group){
-        return(console.log("no group in join group modal"))
-    }
-    if(!profile){
-        return(console.log("no profile in join group modal"))
-    }
+    const { group, profile } = data;//this is owrking now
 
     const values = {
         profile,
@@ -45,6 +35,7 @@ export const JoinGroupModal = () => {
     }
 
     return (
+        <>
         <Dialog open={isModalOpen} onOpenChange={onClose}>
             <DialogContent className="bg-white text-black p-0 overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
@@ -70,5 +61,6 @@ export const JoinGroupModal = () => {
                 </DialogFooter>    
             </DialogContent>
         </Dialog>
+        </>
     )
 }
