@@ -34,7 +34,7 @@ import {
 } from "@/components/ui/select";
 
 const formSchema = z.object({
-    name: z.string().min(1, {
+    email: z.string().min(1, {
         message: "Email is required"
     }),
 });
@@ -50,7 +50,7 @@ export const AddMemberModal = () => {
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: "",
+            email: "",
         }
     });
 
@@ -58,13 +58,7 @@ export const AddMemberModal = () => {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try{
-            const url = qs.stringifyUrl({
-                url: "/api/members",
-                query: {
-                    name: params?.name,
-                }
-            });
-            await axios.post(url);
+            await axios.post("/api/members/add", {values, group});
 
             form.reset();
             router.refresh();
@@ -92,7 +86,7 @@ export const AddMemberModal = () => {
                         <div className="space-y-8 px-6">
                             <FormField 
                                 control={form.control} 
-                                name="name" 
+                                name="email" 
                                 render={({field}) => (
                                     <FormItem>
                                         <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
@@ -113,7 +107,7 @@ export const AddMemberModal = () => {
                         </div>
                         <DialogFooter className="bg-gray-100 px-6 py-4">
                             <Button disabled={isLoading} variant={"default"}>
-                                Create
+                                Add
                             </Button>            
                         </DialogFooter>
                     </form>
