@@ -6,6 +6,7 @@ import { ActionTooltip } from "@/components/action-tooltip";
 import { useModal } from "@/hooks/use-modal-store";
 import { CreateGroupModal } from "../modals/create-group-modal";
 
+//this opens the create group button when the user clicks on it
 export const CreateGroup = () => {
     const { onOpen } = useModal();
     return(

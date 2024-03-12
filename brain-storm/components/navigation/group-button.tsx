@@ -6,11 +6,13 @@ import { useParams, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ActionTooltip } from "@/components/action-tooltip";
 
+//this interface allows passing of the group id and name from where it is called to this file
 interface GroupButtonProps {
     id: string;
     name: string;
 };
 
+//this button is displayed in the group-side-bar for each group. when clicked on it will bring the user to that group
 export const GroupButton =({
     id,
     name
@@ -19,6 +21,7 @@ export const GroupButton =({
     const params = useParams();
     const router = useRouter();
 
+    //send user to group page
     const onClick = () => {
         router.push(`/groups/${id}`);
     }

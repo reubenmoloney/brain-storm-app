@@ -4,17 +4,20 @@ import { redirect } from "next/navigation";
 
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Navigation } from "lucide-react";
 import { CreateGroup } from "./create-group";
 import { GroupButton } from "./group-button";
 
+//this is the leftmost vertical nav bar, it has all the users groups and a create group button
 export const NavigationSidebar = async () => {
+    //fetch user profile
     const profile = await currentProfile();
 
+    //if their not signed in send them to the sign in page
     if (!profile) {
         return redirect("/");//might have to change this to sign in 
     }
 
+    //fetch all the groups the user is in
     const group = await db.group.findMany({
         where: {
             members: {

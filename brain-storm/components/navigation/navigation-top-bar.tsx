@@ -3,6 +3,7 @@
 import { UserButton } from "@clerk/nextjs";
 import { Book, HelpCircle, Search } from "lucide-react";
 
+//This is the bar at the top of the page that allows users to navigate through the different sections of the website and access their account
 export const NavigationTopbar = () => {
     
     return (
