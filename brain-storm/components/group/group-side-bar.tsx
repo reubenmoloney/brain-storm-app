@@ -68,13 +68,6 @@ export const GroupSidebar = async ({
     //look through all members, serch for our matching profile id, once found search for roles.
     const role = group?.members.find((member) => member.profileId === profile.id)?.role;
 
-    /*
-    <GroupSection
-                            sectionType="topics"
-                            role={role}
-                            label="Create Topic"
-                        />
-    */
     return (
         <div className="flex flex-col h-full text-primary w-full ml-[150] mt-[60px] bg-[#F2F3F5]">
             <GroupHeader 
@@ -84,7 +77,13 @@ export const GroupSidebar = async ({
             <ScrollArea className="flex-1 px-3">
                 {!!topics?.length && (
                     <div className="mb-2">
-                        
+                        {role!==MemberRole.MEMBER &&
+                            <GroupSection
+                                sectionType="topics"
+                                role={role}
+                                label="Create Topic"
+                            />
+                        }
                         <div className="space-y-[2px]">
                             {topics.map((topic) => (
                                     <TopicButton
