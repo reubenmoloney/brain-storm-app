@@ -27,10 +27,14 @@ import { FileUpload } from "@/components/file-upload";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { useEffect } from "react";
+import { Description } from "@radix-ui/react-dialog";
 
 const formSchema = z.object({
     name: z.string().min(1, {
         message: "group name is required"
+    }),
+    description: z.string().min(1, {
+        message: "group description is required"
     }),
 });
 
@@ -45,12 +49,16 @@ export const EditGroupModal = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
+            description: ""
         }
     });
 
     useEffect(() => {
         if (group) {
             form.setValue("name", group.name);
+            if(group.description){
+                form.setValue("description", group.description);
+            }
         }
     }, [group, form]);
 
@@ -95,6 +103,26 @@ export const EditGroupModal = () => {
                                     <FormItem>
                                         <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
                                             group Name
+                                        </FormLabel>
+                                        <FormControl>
+                                            <Input 
+                                                disabled={isLoading}
+                                                className="bg-zinc-300/50 border-0 focus-visible:ring-0 text black focus-visible:ring-offset-0"
+                                                placeholder="Enter group Name"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField 
+                                control={form.control} 
+                                name="description" 
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
+                                            group description
                                         </FormLabel>
                                         <FormControl>
                                             <Input 

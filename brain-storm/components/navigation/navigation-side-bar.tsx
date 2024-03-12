@@ -39,10 +39,19 @@ export const NavigationSidebar = async () => {
             <ScrollArea className="flex-1 w-full">
                 {group.map((group) =>(
                     <div key={group.id} className="mb-4">
-                        <GroupButton
+                        {group.description && (<GroupButton
                             name={group.name}
                             id={group.id}
+                            description={group.description}
+                        />)}
+                        {!group.description && (
+                            <GroupButton
+                            name={group.name}
+                            id={group.id}
+                            description="No description"
                         />
+                        )}
+                        
                     </div>
                 ))}
             </ScrollArea>

@@ -6,7 +6,7 @@ import { MemberRole } from "@prisma/client";
 
 export async function POST(req: Request) {
     try{
-        const { name, isPublicString } = await req.json();
+        const { name, description, isPublicString } = await req.json();
         const profile = await currentProfile();
 
         if(!profile) {
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
                 profileId: profile.id,
                 name: name,
                 isPublic,
-                imageUrl: "",
+                description: description,
                 topics: {
                     create: [
                         { name: "general", profileId: profile.id }

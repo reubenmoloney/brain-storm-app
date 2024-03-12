@@ -8,3 +8,8 @@ Manage members modal
 Public group setting needs to be fixed
 Media Tab
 Voice Chat
+Add users
+Display roles next to names
+
+# ADD SOON
+add group descriptions

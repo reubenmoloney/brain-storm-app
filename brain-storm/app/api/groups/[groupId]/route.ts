@@ -34,7 +34,7 @@ export async function PATCH(
 ) {
     try {
         const profile = await currentProfile();
-        const { name, isPublicString } = await req.json();
+        const { name, isPublicString, description } = await req.json();
 
         if(!profile){
             return new NextResponse("Unautorized", { status: 401 });
@@ -44,15 +44,15 @@ export async function PATCH(
         if(isPublicString === "true"){
             isPublic = true;
         }
-        console.log(isPublicString, " :::: ", isPublic);
         const group = await db.group.update({
             where: {
                 id: params.groupId,
                 profileId: profile.id,
-                isPublic: isPublic,
             },
             data: {
                 name,
+                description,
+                isPublic,
             }
         });
 

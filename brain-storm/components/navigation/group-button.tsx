@@ -10,12 +10,14 @@ import { ActionTooltip } from "@/components/action-tooltip";
 interface GroupButtonProps {
     id: string;
     name: string;
+    description: string;
 };
 
 //this button is displayed in the group-side-bar for each group. when clicked on it will bring the user to that group
 export const GroupButton =({
     id,
-    name
+    name,
+    description,
 }: GroupButtonProps) => {
 
     const params = useParams();
@@ -26,7 +28,7 @@ export const GroupButton =({
         router.push(`/groups/${id}`);
     }
 
-    const groupLabel = `Click to open ${name}`;
+    const groupLabel = `${description}`;
     return(
         <ActionTooltip side="right" align="center" label={groupLabel}>
             <button

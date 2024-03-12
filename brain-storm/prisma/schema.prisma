@@ -25,7 +25,7 @@ model Profile {
 model Group {
   id String @id @default(uuid())
   name String
-  imageUrl String @db.Text
+  description String?
   isPublic Boolean @default(false)
 
   profileId String
