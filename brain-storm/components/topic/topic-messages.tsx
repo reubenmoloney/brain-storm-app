@@ -20,7 +20,7 @@ type MessageWithMemberWithProfile = Message & {
 interface TopicMessagesProps {
     name: string;
     member: Member;
-    topicId: string; //this might need to be renamed to topicId
+    topicId: string;
     apiUrl: string;
     socketUrl: string;
     socketQuery: Record<string, string>;

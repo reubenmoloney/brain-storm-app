@@ -40,7 +40,7 @@ const GroupLayout = async ({
             <div className="hidden md:flex h-full w-60 z-20 flex-col ml-[80px] fixed inset-y-0">
                 <GroupSidebar groupId={params.groupId}/>
             </div>
-            <main className="ml-[90px] h-full md:pl-60">
+            <main className="md:ml-[90px] ml-1 h-full md:pl-60">
                 {children}
             </main>
         </div>

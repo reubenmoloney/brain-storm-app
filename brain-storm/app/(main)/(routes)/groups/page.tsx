@@ -21,7 +21,7 @@ const NoGroupsPage = async () => {
     }
 
     return ( 
-        <div className="ml-[80px]">
+        <div className="md:ml-[80px] ">
             You arent in any groups
         </div>
      );

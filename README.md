@@ -3,13 +3,10 @@ TODO:
 Search in groups area
 Message replys
 Message Emojis
-Edit group modal
-Manage members modal
 Public group setting needs to be fixed
 Media Tab
 Voice Chat
-Add users
-Display roles next to names
 
 # ADD SOON
-remove members working
+remove members 
+delete topics 
