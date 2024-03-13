@@ -79,6 +79,7 @@ export const TopicMessages = ({
             </div>
         )
     }
+
     //const chatRef = useRef<ElementRef<"div">>(null);
     return (
         <ScrollArea className="flex-1 w-full fixed pt-[30px]">
@@ -88,6 +89,8 @@ export const TopicMessages = ({
                     {data?.pages?.map((group, i) => (
                         <Fragment key={i}>
                             {group.items.map((message: MessageWithMemberWithProfile) => (
+                                <>
+                                Render replies here
                                 <MessageItem
                                     id={message.id}
                                     content={message.content}
@@ -100,9 +103,12 @@ export const TopicMessages = ({
                                     currentMember={member}
                                     key={message.id}
                                 />
+                                
+                                </>
                             ))}
                         </Fragment>
                     ))}
+                    <p className="text-rose-500 text-xl">This is the start of {name}.</p>
                 </div>
                 <div className="h-[60px]"/>
             </div>
