@@ -4,6 +4,8 @@ import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { JoinButton } from "@/components/browse/join-button";
+import { Group, Member, MemberRole } from "@prisma/client";
+import { GroupWithMembersWithProfiles } from "@/types";
 
 
 
@@ -19,9 +21,19 @@ const browsePage = async () => {
             isPublic: true
         },
         include: {
-            members: true
+            members: {
+                include: {
+                    profile: true
+                }
+            }
         }
-    })
+    });
+    //: { members: Member[]}& {group: Group}
+    const getGroup = (group: GroupWithMembersWithProfiles) => {
+        const { members, ...newGroup} = group;
+        return newGroup;
+    }
+
 
     return ( 
         <>
@@ -40,7 +52,7 @@ const browsePage = async () => {
                     }
                     {!group.members.find((member) => member.profileId === profile.id) &&
                         <JoinButton
-                            group={group}
+                            group={getGroup(group)}
                             profile={profile}
                         />
                     }   

@@ -15,11 +15,6 @@ interface JoinButtonProps{
 export const JoinButton = ({group, profile}:JoinButtonProps) => {
     const { onOpen } = useModal();
 
-    
-
-    if(true){//if already in group
-        //nothing yet
-    }
     return(
         <button 
                         onClick={() => onOpen("joinGroup", {group, profile})}
