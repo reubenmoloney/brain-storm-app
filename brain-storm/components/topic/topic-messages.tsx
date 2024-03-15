@@ -90,7 +90,7 @@ export const TopicMessages = ({
                     {data?.pages?.map((group, i) => (
                         <Fragment key={i}>
                             {group.items.map((message: MessageWithMemberWithProfile) => (
-                                <>
+                                <div key={message.id}>
                                 Render Replies Here
                                 <MessageItem
                                     id={message.id}
@@ -105,7 +105,7 @@ export const TopicMessages = ({
                                     key={message.id}
                                 />
                                 
-                                </>
+                                </div>
                             ))}
                         </Fragment>
                     ))}

@@ -1,6 +1,6 @@
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { Group, MemberRole } from "@prisma/client";
+import { Group, Member, MemberRole } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 export async function POST(
@@ -23,6 +23,30 @@ export async function POST(
         }
 
         console.log(profile.name);
+
+        const checkGroup = await db.group.findUnique({
+            where: {
+                id: group.id,
+            },
+            include: {
+                members: true
+            },
+        });
+
+        const exists = checkGroup?.members.find((member) => member.profileId === profile.id);
+        console.log("Already in the group", exists);
+
+        if(exists){
+            return null;
+        }
+        
+        //check members in group
+        //const exists = checkGroup?.members.find((member: Member) => member.profileId === profile.id);
+        //if(exists){
+            //this means members already in the group
+            //console.log("Already in the group");
+            //return new NextResponse("Member already in group", { status: 100 });
+        //}
 
         const newGroup = await db.group.update({
             where: {

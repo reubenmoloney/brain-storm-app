@@ -1,5 +1,6 @@
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
+import { MemberRole } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 export async function PATCH(
@@ -62,5 +63,43 @@ export async function PATCH(
     } catch (error) {
         console.log("[MEMBERS_ID_PATCH]", error);
         return new NextResponse("Internal Error", { status: 500 });//status is depreciated
+    }
+}
+
+export async function DELETE(
+    req: Request,
+    { params }: { params: { memberId: string } }
+) {
+    try {
+        
+        const { searchParams } = new URL(req.url);
+        const groupId = searchParams.get("groupId");
+
+        if(!groupId){
+            return new NextResponse("GROUP NOT FOUND", { status: 404})
+        }
+
+        const group = await db.group.update({
+            where: {
+                id: groupId,
+            },
+            data: {
+                members: {
+                    deleteMany: {
+                        id: params.memberId,
+                        role: {
+                            not: MemberRole.OWNER
+                        }
+                    },
+                    
+                }
+            }
+        });
+
+        return NextResponse.json(group);
+
+    } catch (error) {
+        console.log("[group_ID_DELETE]", error);
+        return new NextResponse("Internal Error", { status: 500 });//status is depriciated
     }
 }

@@ -17,6 +17,9 @@ const browsePage = async () => {
     const groups = await db.group.findMany({
         where: {
             isPublic: true
+        },
+        include: {
+            members: true
         }
     })
 
@@ -28,10 +31,19 @@ const browsePage = async () => {
             {groups.map((group) => (
                 <div key={group.id} className="flex flex-inline m-2 p-2 bg-zinc-400 rounded-md">
                     <span className="text-1 text-white">{group.name}</span>: {group.description}
-                    <JoinButton
-                        group={group}
-                        profile={profile}
-                    />
+                    {group.members.find((member) => member.profileId === profile.id) &&
+                        <button 
+                        className="bg-zinc-200 p-1 rounded-lg hover:bg-zinc-50 ml-auto"
+                    >
+                        Already Joined
+                    </button>
+                    }
+                    {!group.members.find((member) => member.profileId === profile.id) &&
+                        <JoinButton
+                            group={group}
+                            profile={profile}
+                        />
+                    }   
                 </div>
             ))}
             </div>
