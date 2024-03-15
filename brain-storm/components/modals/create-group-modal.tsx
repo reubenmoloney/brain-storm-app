@@ -26,6 +26,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
 const formSchema = z.object({
     name: z.string().min(1, {
@@ -128,21 +129,38 @@ export const CreateGroupModal = () => {
                                 )}
                             />
                             <FormField 
-                                control={form.control} 
-                                name="isPublicString" 
-                                render={({field}) => (
+                                control={form.control}
+                                name="isPublicString"
+                                render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
-                                            Is Public? - [true] or [false]
-                                        </FormLabel>
-                                        <FormControl>
-                                            <Input 
-                                                disabled={isLoading}
-                                                className="bg-zinc-300/50 border-0 focus-visible:ring-0 text black focus-visible:ring-offset-0"
-                                                placeholder="Enter true or false"
-                                                {...field}
-                                            />
-                                        </FormControl>
+                                        <FormLabel>Public/Private</FormLabel>
+                                        <Select
+                                            disabled={isLoading}
+                                            onValueChange={field.onChange}
+                                            defaultValue={field.value}
+                                        >
+                                            <FormControl>
+                                                <SelectTrigger
+                                                    className="bg-zinc-300/50 border-0 focus:ring-0 text-black ring-offset-0 focus:ring-offset-0 capitalize outline-none"
+                                                >
+                                                    <SelectValue placeholder="Select Privacy"/>
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                    <SelectItem
+                                                        value="true"
+                                                        className="capitalize"
+                                                    >
+                                                        Public
+                                                    </SelectItem>
+                                                    <SelectItem
+                                                        value="false"
+                                                        className="capitalize"
+                                                    >
+                                                        Private
+                                                    </SelectItem>
+                                            </SelectContent>
+                                        </Select>
                                         <FormMessage />
                                     </FormItem>
                                 )}

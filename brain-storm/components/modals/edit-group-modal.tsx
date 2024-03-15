@@ -29,12 +29,17 @@ import { useModal } from "@/hooks/use-modal-store";
 import { useEffect } from "react";
 import { Description } from "@radix-ui/react-dialog";
 
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+
 const formSchema = z.object({
     name: z.string().min(1, {
         message: "group name is required"
     }),
     description: z.string().min(1, {
         message: "group description is required"
+    }),
+    isPublicString: z.string().min(1, {
+        message: "privacy is required"
     }),
 });
 
@@ -49,13 +54,21 @@ export const EditGroupModal = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
-            description: ""
+            description: "",
+            isPublicString: "false"
         }
     });
+
+
 
     useEffect(() => {
         if (group) {
             form.setValue("name", group.name);
+            if(group.isPublic){
+                form.setValue("isPublicString", "true");
+            }else {
+                form.setValue("isPublicString", "false");
+            }
             if(group.description){
                 form.setValue("description", group.description);
             }
@@ -132,6 +145,43 @@ export const EditGroupModal = () => {
                                                 {...field}
                                             />
                                         </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField 
+                                control={form.control}
+                                name="isPublicString"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Public/Private</FormLabel>
+                                        <Select
+                                            disabled={isLoading}
+                                            onValueChange={field.onChange}
+                                            defaultValue={field.value}
+                                        >
+                                            <FormControl>
+                                                <SelectTrigger
+                                                    className="bg-zinc-300/50 border-0 focus:ring-0 text-black ring-offset-0 focus:ring-offset-0 capitalize outline-none"
+                                                >
+                                                    <SelectValue placeholder="Select Privacy"/>
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                    <SelectItem
+                                                        value="true"
+                                                        className="capitalize"
+                                                    >
+                                                        Public
+                                                    </SelectItem>
+                                                    <SelectItem
+                                                        value="false"
+                                                        className="capitalize"
+                                                    >
+                                                        Private
+                                                    </SelectItem>
+                                            </SelectContent>
+                                        </Select>
                                         <FormMessage />
                                     </FormItem>
                                 )}

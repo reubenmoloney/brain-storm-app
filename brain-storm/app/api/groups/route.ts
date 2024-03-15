@@ -14,16 +14,15 @@ export async function POST(req: Request) {
         }
 
         let isPublic = false;
-        if(isPublicString === true){
+        if(isPublicString === "true"){
             isPublic = true;
         }
-        console.log(isPublicString, " :::: ", isPublic);
 
         const group = await db.group.create({
             data: {
                 profileId: profile.id,
                 name: name,
-                isPublic,
+                isPublic: isPublic,
                 description: description,
                 topics: {
                     create: [

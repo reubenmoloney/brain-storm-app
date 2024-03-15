@@ -28,11 +28,12 @@ const browsePage = async () => {
             }
         }
     });
-    //: { members: Member[]}& {group: Group}
+    //remove members array from group object
     const getGroup = (group: GroupWithMembersWithProfiles) => {
         const { members, ...newGroup} = group;
         return newGroup;
     }
+    //redirect to selected group
 
 
     return ( 
