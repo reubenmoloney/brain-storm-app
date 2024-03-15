@@ -1,3 +1,4 @@
+import { MobileNavBar } from "@/components/navigation/mobile-nav";
 import { NavigationTopbar } from "@/components/navigation/navigation-top-bar";
 
 const AuthLayout = ({ children }: { children: React.ReactNode}) => {
@@ -7,7 +8,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode}) => {
                 <NavigationTopbar />
             </div>
             <div className="md:hidden z-15 pb-[50px]">
-                MOBILE NAV BAR
+                <MobileNavBar />
             </div>
             <span className="z-0">
                 {children}
