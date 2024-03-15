@@ -8,6 +8,7 @@ import { MessageItem } from "./message-item";
 import { format } from "date-fns";
 import { useTopicMessageSocket } from "@/hooks/use-topic-message-socket";
 import { ScrollArea } from "../ui/scroll-area";
+import Replys from "./replys";
 
 const DATE_FORMAT = "d MMM yyyy, HH:mm";
 
@@ -90,7 +91,7 @@ export const TopicMessages = ({
                         <Fragment key={i}>
                             {group.items.map((message: MessageWithMemberWithProfile) => (
                                 <>
-                                Render replies here
+                                Render Replies Here
                                 <MessageItem
                                     id={message.id}
                                     content={message.content}

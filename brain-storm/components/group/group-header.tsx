@@ -28,7 +28,7 @@ export const GroupHeader = ({
                         className="w-full text-md font-semibold px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2 hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition"
                     >
                         {group.name}
-                        <ChevronDown className="h-5 w-5 ml-auto"/>
+                        <Settings className="h-5 w-5 ml-auto"/>
                     </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
@@ -49,7 +49,7 @@ export const GroupHeader = ({
                             onClick={() => onOpen("editGroup", {group})}
                             className="pxwd-3 py-2 text-sm cursor-pointer"
                         >
-                            Group Settings
+                            Edit Group
                             <Settings className="h-4 w-4 ml-auto"/>
                         </DropdownMenuItem>
                     )}
