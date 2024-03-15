@@ -37,7 +37,7 @@ export async function POST(
         console.log("Already in the group", exists);
 
         if(exists){
-            return null;
+            return new NextResponse("Already in group", { status: 400 });
         }
         
         //check members in group
