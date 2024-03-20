@@ -25,7 +25,7 @@ export const GroupSection = ({
         <div className="flex items-center justify-between py-2 bg-white rounded-sm my-2 border-[2px] hover:text-white border-rose-500 hover:bg-rose-100 pl-2">
             {role !== MemberRole.MEMBER && sectionType === "topics" &&(
                     <button 
-                        className="flex flex-direction:row items-center text-zinc-500 hover:text-whit transition"
+                        className="flex flex-direction:row items-center text-zinc-500 transition"
                         onClick={() => onOpen("createTopic")}
                     >
                         {label}  <Plus className="h-4 w-4"/>

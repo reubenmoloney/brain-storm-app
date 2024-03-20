@@ -33,16 +33,11 @@ export const GroupButton =({
         <ActionTooltip side="right" align="center" label={groupLabel}>
             <button
                 onClick={onClick}
-                className="group relative flex items-center"
+                className="group relative flex items-center "
             >
                 <div className={cn(
-                    "absolute left-0 bg-primary rounded-sm transition-all w-[4px]",
-                    params?.groupId !== id && "group-hover:h-[20px]",
-                    params?.groupId === id ? "h-[36px]" : "h-[8px]"
-                )} />
-                <div className={cn(
-                    "relative group flex mx-3 h-[48px] w-[130px] rounded-[16px] group-hover:rounded=[16px] transition-all overflow-hidden",
-                    params?.groupId === id && "bg-primary/10 text-primary rounded-[16px]"
+                    "relative group border-solid border-[2px] border-rose-600 bg-white flex mx-3 pl-[2px] h-[48px] w-[130px] rounded-[4px] group-hover:rounded=[16px] transition-all overflow-hidden",
+                    params?.groupId === id && "bg-rose-200 border-dashed text-primary"
                 )}>
                 <div className="flex items-center justify-center">
                     {name}

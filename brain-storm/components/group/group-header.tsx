@@ -3,7 +3,7 @@
 import { GroupWithMembersWithProfiles } from "@/types";
 import { MemberRole } from "@prisma/client";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
-import { ChevronDown, LogOut, Settings, Trash, UserPlus, Users } from "lucide-react";
+import { ChevronDown, LogOut, Phone, Settings, Trash, UserPlus, Users } from "lucide-react";
 import { useModal } from "@/hooks/use-modal-store";
 
 interface GroupHeaderProps {
@@ -64,9 +64,18 @@ export const GroupHeader = ({
                         </DropdownMenuItem>
                     )}
 
+                    <DropdownMenuItem
+                        className="px-3 py-2 text-sm cursor-pointer"
+                    >
+                        Join Voice Call
+                        <Phone className="h-4 w-4 ml-auto"/>
+                    </DropdownMenuItem>
+
                     {isModerator && (
                         <DropdownMenuSeparator />
                     )}
+                    
+                    
 
                     { isOwner && (
                         <DropdownMenuItem
