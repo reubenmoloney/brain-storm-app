@@ -6,19 +6,6 @@ const LandingPage = async () => {
     //get profile of user
     const profile = await initialProfile();
     
-    /*
-    //find a group where the user is a member
-    const group = await db.group.findFirst({
-        where: {
-            members: {
-                some: {
-                    profileId: profile.id
-                }
-            }
-        }
-    });
-
-    */
 
     return ( 
         <div className="w-full h-full">
@@ -26,10 +13,10 @@ const LandingPage = async () => {
             <br />
             Some hot and upcoming groups::
             <br />
-            
-            {profile.email}
-            <br />
-            Admin analytics button(only displayed to admins)
+            {profile.isAdmin &&
+            <a href="/admin"><div className="bg-zinc-400 hover:bg-zinc-300 w-[80px] rounded-[12px] p-1">ADMIN BUTTON</div>
+            </a>
+            }
         </div>
      );
 }
