@@ -8,6 +8,8 @@ import { Separator } from "../ui/separator";
 import { GroupSection } from "./group-section";
 import { TopicButton } from "./topic-button";
 import { GroupHeader } from "./group-header";
+import { MediaRoom } from "../media-room";
+import CallButton from "./call-button";
 
 
 //props for passthrough from function call
@@ -110,6 +112,9 @@ export const GroupSidebar = async ({
                     </div>
                 )}
             </ScrollArea>
+            <CallButton 
+                groupId = {group.id}
+            />
         </div>
     )
 }

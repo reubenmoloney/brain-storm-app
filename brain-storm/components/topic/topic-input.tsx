@@ -51,6 +51,7 @@ export const TopicInput = ({
             });
 
             await axios.post(url, values);
+            form.reset();
         }catch(error){
             console.log(error);
         }
