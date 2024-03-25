@@ -1,4 +1,3 @@
-import Editor from "@/components/editor/editor";
 import { db } from "@/lib/db";
 import { initialProfile } from "@/lib/initial-profile";
 import { redirect } from "next/navigation";
