@@ -6,6 +6,7 @@ import { Group, Member, MemberRole } from "@prisma/client";
 import { GroupWithMembersWithProfiles } from "@/types";
 import { useRouter } from "next/router";
 import { User } from "lucide-react";
+import { redirect } from "next/navigation";
 
 
 
@@ -16,10 +17,12 @@ const browsePage = async () => {
     if(!profile) {
         return redirectToSignIn();
     }
+
+    if(!profile.isAdmin){
+        return redirect("/");
+    }
+
     const groups = await db.group.findMany({
-        where: {
-            isPublic: true
-        },
         include: {
             members: {
                 include: {
@@ -39,7 +42,12 @@ const browsePage = async () => {
     return ( 
         <>
         <div>
-            <div className="text-xl m-5">All of these groups are public and you can join them now!</div>
+            <div className="text-xl m-5">
+                All groups (including private groups)
+                <a href="/admin"><button className="bg-zinc-400 hover:bg-zinc-300 rounded-sm p-2 ml-[200px]">
+                    Back to Admin
+                </button></a>
+            </div> 
             <div className="">
             {groups.map((group) => (
                 <div key={group.id} className="flex flex-inline m-2 p-2 bg-zinc-400 rounded-md">
