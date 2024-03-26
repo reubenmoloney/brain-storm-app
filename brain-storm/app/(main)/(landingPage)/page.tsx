@@ -1,21 +1,8 @@
-import { db } from "@/lib/db";
 import { initialProfile } from "@/lib/initial-profile";
-import axios from "axios";
-import { redirect } from "next/navigation";
 
 const LandingPage = async () => {
     //get profile of user
     const profile = await initialProfile();
-
-    /*
-    if(!profile){
-        try {
-            await axios.patch(`/api/profile/${profile.id}`);//errror is here
-        } catch(error) {
-            console.log(error);
-        }
-    }
-    */
 
     
 
