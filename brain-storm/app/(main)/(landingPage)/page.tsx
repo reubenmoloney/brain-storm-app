@@ -15,11 +15,11 @@ const LandingPage = async () => {
             <br />
             Some hot and upcoming groups::
             <br />
-            <a href="/admin"><button className="bg-zinc-400 hover:bg-zinc-300 rounded-sm p-2">
+            <a href="https://brainstorm-marketing-site.vercel.app/"><button className="bg-zinc-400 hover:bg-zinc-300 rounded-sm p-2">
                 BrainStorm Company
             </button></a>
             {profile.isAdmin &&
-            <a href="/"><button className="bg-zinc-400 hover:bg-zinc-300 rounded-sm p-2 ml-4">
+            <a href="/admin"><button className="bg-zinc-400 hover:bg-zinc-300 rounded-sm p-2 ml-4">
                 Admin Section
             </button></a>
             }
