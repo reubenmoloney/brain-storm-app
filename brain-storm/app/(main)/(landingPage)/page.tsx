@@ -15,7 +15,7 @@ const LandingPage = async () => {
             <br />
             To find a group thats right for you, check out all the established public groups in the <a href="/browse" className="hover:underline text-rose-400 hover:text-rose-600">browse section</a>.
             <br />
-            To create your own group, or go to groups that you're already in, go to the <a href="/groups" className="hover:underline text-rose-400 hover:text-rose-600">my groups section</a>.
+            To create your own group, or go to groups that you are already in, go to the <a href="/groups" className="hover:underline text-rose-400 hover:text-rose-600">my groups section</a>.
             <br />
             You can access all these sections at anytime via the navbar at the top of your screen, please enjoy our platform!.
             <br />
