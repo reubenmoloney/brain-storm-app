@@ -49,7 +49,7 @@ export const MediaRoom = ({groupId}: MediaRoomProps) => {
             token={token}
             connect={true}
             audio={true}
-            video={false}
+            video={true}
         >
             <VideoConference />
         </LiveKitRoom>

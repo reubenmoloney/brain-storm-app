@@ -1,10 +1,21 @@
 import { db } from "@/lib/db";
 import { initialProfile } from "@/lib/initial-profile";
+import axios from "axios";
 import { redirect } from "next/navigation";
 
 const LandingPage = async () => {
     //get profile of user
     const profile = await initialProfile();
+
+    /*
+    if(!profile){
+        try {
+            await axios.patch(`/api/profile/${profile.id}`);//errror is here
+        } catch(error) {
+            console.log(error);
+        }
+    }
+    */
 
     
 
@@ -22,6 +33,11 @@ const LandingPage = async () => {
             <a href="/admin"><button className="bg-zinc-400 hover:bg-zinc-300 rounded-sm p-2 ml-4">
                 Admin Section
             </button></a>
+            }
+            {!profile.name &&
+                <div>
+                    NO NAME
+                </div>
             }
             
         </div>
