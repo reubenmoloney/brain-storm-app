@@ -40,15 +40,6 @@ const LandingPage = async () => {
                 Admin Section
             </button></a>
             }
-            {!profile.name &&
-                <div>
-                    NO NAME
-                </div>
-            }
-            
-        </div>
-        <div className="h-[150px] bg-zinc-300 p-4 mt-[555px]">
-
         </div>
         </div>
      );
