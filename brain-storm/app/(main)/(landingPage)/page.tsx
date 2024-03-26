@@ -9,16 +9,22 @@ const LandingPage = async () => {
     
 
     return ( 
-        <div className="w-full h-full m-4">
+        <div className="h-full">
+        <div className="m-4">
             Welcome {profile.name}, this will be the homepage
             <br />
             Some hot and upcoming groups::
             <br />
-            {profile.isAdmin &&
             <a href="/admin"><button className="bg-zinc-400 hover:bg-zinc-300 rounded-sm p-2">
+                BrainStorm Company
+            </button></a>
+            {profile.isAdmin &&
+            <a href="/"><button className="bg-zinc-400 hover:bg-zinc-300 rounded-sm p-2 ml-4">
                 Admin Section
             </button></a>
             }
+            
+        </div>
         </div>
      );
 }
