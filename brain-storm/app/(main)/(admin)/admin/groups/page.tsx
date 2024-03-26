@@ -51,7 +51,7 @@ const browsePage = async () => {
             <div className="">
             {groups.map((group) => (
                 <div key={group.id} className="flex flex-inline m-2 p-2 bg-zinc-400 rounded-md">
-                    <span className="text-1 text-white">{group.name}</span>: {group.description} <User className="ml-[40px]"/> {group.members.length}
+                    <span className="text-1 text-white">{group.name}</span>: {group.description} <User className="ml-[40px]"/> {group.members.length} {group.isPublic && <span className="ml-2 text-green-500 bg-zinc-200 rounded-sm">Public</span>}{!group.isPublic && <span className="ml-2 text-rose-800 bg-zinc-200 rounded-sm">Private</span>}
                     {group.members.find((member) => member.profileId === profile.id) &&
                     <button 
                         className="bg-zinc-200 p-1 rounded-lg hover:bg-zinc-50 ml-auto"
@@ -64,7 +64,8 @@ const browsePage = async () => {
                             group={getGroup(group)}
                             profile={profile}
                         />
-                    }   
+                    }
+                    DELETE BUTTON
                 </div>
             ))}
             </div>

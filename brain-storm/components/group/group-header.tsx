@@ -65,15 +65,6 @@ export const GroupHeader = ({
                         </DropdownMenuItem>
                     )}
 
-                    <DropdownMenuItem
-                        className="px-3 py-2 text-sm cursor-pointer"
-                    >
-                        <CallButton 
-                            groupId = {group.id}
-                        />
-                        <Phone className="h-4 w-4 ml-auto"/>
-                    </DropdownMenuItem>
-
                     {isModerator && (
                         <DropdownMenuSeparator />
                     )}
