@@ -91,7 +91,6 @@ export const TopicMessages = ({
                         <Fragment key={i}>
                             {group.items.map((message: MessageWithMemberWithProfile) => (
                                 <div key={message.id}>
-                                Render Replies Here
                                 <MessageItem
                                     id={message.id}
                                     content={message.content}

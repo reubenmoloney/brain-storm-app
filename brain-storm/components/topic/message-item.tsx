@@ -133,12 +133,12 @@ export const MessageItem = ({
                     )}
                     {isPDF && (
                         <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
-                            <FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400" />
+                            <FileIcon className="h-10 w-10 fill-zinc-800 stroke-indigo-400" />
                                 <a 
                                     href={fileUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="ml-2 text-sm text-indigo-500 dark:text-indigo-400 hover:underline"
+                                    className="ml-2 text-sm text-zinc-500 hover:underline"
                                 >
                                     PDF File
                                 </a>
@@ -181,11 +181,7 @@ export const MessageItem = ({
                 </div>
             </div>
             <div className="hidden group-hover:flex items-center gap-x-2 absolute p-1 -top-2 right-5 bg-white rounded-sm">
-            <ActionTooltip label="Reply">
-                            <Reply 
-                                className="hover:text-yellow"
-                            />
-                        </ActionTooltip>
+            
             {canDelete && (
                 <>
                     {canEdit && (
@@ -211,3 +207,10 @@ export const MessageItem = ({
         </div>
     )
 }
+/*
+<ActionTooltip label="Reply">
+                            <Reply 
+                                className="hover:text-yellow"
+                            />
+            </ActionTooltip>
+*/

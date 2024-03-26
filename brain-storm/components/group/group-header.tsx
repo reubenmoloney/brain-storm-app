@@ -5,6 +5,7 @@ import { MemberRole } from "@prisma/client";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { ChevronDown, LogOut, Phone, Settings, Trash, UserPlus, Users } from "lucide-react";
 import { useModal } from "@/hooks/use-modal-store";
+import CallButton from "./call-button";
 
 interface GroupHeaderProps {
     group: GroupWithMembersWithProfiles;
@@ -67,7 +68,9 @@ export const GroupHeader = ({
                     <DropdownMenuItem
                         className="px-3 py-2 text-sm cursor-pointer"
                     >
-                        Join Voice Call
+                        <CallButton 
+                            groupId = {group.id}
+                        />
                         <Phone className="h-4 w-4 ml-auto"/>
                     </DropdownMenuItem>
 
