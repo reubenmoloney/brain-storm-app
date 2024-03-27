@@ -55,8 +55,8 @@ export const NavigationSidebar = async () => {
                     </div>
                 ))}
             </ScrollArea>
-            <div className="pb-3 mt-auto flex items-center flex-col gap-y-4">
-                Footer stuff
+            <div className="pb-3 mt-auto flex items-center flex-col gap-y-4 text-rose-400">
+                BrainStorm
             </div>
         </div>
     )

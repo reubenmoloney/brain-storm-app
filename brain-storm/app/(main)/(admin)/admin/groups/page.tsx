@@ -65,7 +65,6 @@ const browsePage = async () => {
                             profile={profile}
                         />
                     }
-                    DELETE BUTTON
                 </div>
             ))}
             </div>

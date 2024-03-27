@@ -82,9 +82,6 @@ const AdminPage = async() => {
             <a href="/admin/groups"><button className="bg-zinc-400 hover:bg-zinc-300 rounded-sm p-2">
                 View Groups
             </button></a>
-            <button className="bg-zinc-400 hover:bg-zinc-300 rounded-sm p-2 ml-4">
-                Add Admin
-            </button>
 
         </div>
      )
