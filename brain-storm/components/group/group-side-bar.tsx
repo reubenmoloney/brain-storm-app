@@ -88,6 +88,11 @@ export const GroupSidebar = async ({
                                 label="Create Topic"
                             />
                         }
+                        <span className="md:display-none">
+                        <CallButton
+                            groupId = {group.id}
+                        />
+                        </span>
                         <p className="text-xl text-rose-500">Topics</p>
                         <div className="space-y-[2px]">
                             {topics.map((topic) => (
