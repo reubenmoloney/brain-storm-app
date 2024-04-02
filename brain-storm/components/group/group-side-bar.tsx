@@ -111,10 +111,17 @@ export const GroupSidebar = async ({
                         </div>
                     </div>
                 )}
-            </ScrollArea>
+            <div className="md:invisible">
             <CallButton 
                 groupId = {group.id}
             />
+            </div>
+            </ScrollArea>
+            <div className="display-none md:flex">
+            <CallButton 
+                groupId = {group.id}
+            />
+            </div>
         </div>
     )
 }

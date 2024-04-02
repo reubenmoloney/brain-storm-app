@@ -1,11 +1,11 @@
-datasource db {
-  provider     = "mysql"
-  url          = "mysql://s1dicj42am74zwmrviqx:pscale_pw_D4YBeG2nvoGUItribafm0wdnmXZPQziR95BAffVtkSR@aws.connect.psdb.cloud/brainstorm?sslaccept=strict"
-  relationMode = "prisma"
-}
-
 generator client {
   provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = "mysql://7dmceav967ckgawojxdv:pscale_pw_ErQ4348tT7VUguXHixlWAcgz1kYdNWOt1JjwAJxFJTm@aws.connect.psdb.cloud/brainstorm?sslaccept=strict"
+  relationMode = "prisma"
 }
 
 //profile table
@@ -57,7 +57,7 @@ model Member {
   group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
 
   messages Message[]
-  subMessages SubMessage[]
+  //subMessages SubMessage[]
 
   @@index([profileId])
   @@index([groupId])
@@ -96,25 +96,25 @@ model Message {
 
   createdAt DateTime @default(now())
 
-  subMessages SubMessage[]
+  //subMessages SubMessage[]
 
   @@index([memberId])
   @@index([topicId])
 }
 
 //will have to add sub message table aswell, relation will be 1 message has many sub messages - they all have to be message not media
-model SubMessage {
-  id String @id @default(uuid())
-  content String @db.Text
+//model SubMessage {
+//  id String @id @default(uuid())
+//  content String @db.Text
 
-  memberId String
-  member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+//  memberId String
+//  member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
 
-  messageId String
-  message Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+//  messageId String
+//  message Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
+//  createdAt DateTime @default(now())
 
-  @@index([memberId])
-  @@index([messageId])
-}
+//  @@index([memberId])
+//  @@index([messageId])
+//}
