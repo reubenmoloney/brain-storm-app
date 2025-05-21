@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider     = "mysql"
-  url          = "mysql://7dmceav967ckgawojxdv:pscale_pw_ErQ4348tT7VUguXHixlWAcgz1kYdNWOt1JjwAJxFJTm@aws.connect.psdb.cloud/brainstorm?sslaccept=strict"
+  url          = 
   relationMode = "prisma"
 }
 
